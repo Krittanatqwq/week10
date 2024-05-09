@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โรงแรมที่พัก</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/csscheck.css">
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Booking Website</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col12 col-md-6">
+                <div class="picProfile">
+                    <img src="images/b3.1.webp" >  
+                </div>
+            </div>
+            <div class="col12 col-md-6">
+                <h3>Movenpick Residence</h3>
+                <span>ราคาห้อง ฿5,500/คืน</span><br>
+                <span>4 คน2 ห้องนอน2 เตียงห้องน้ำ 2 ห้อง</span>
+
+            </div>
+        </div><br>
+        
+        <div class="bookingInfo">
+            <span>ชื่อผู้จอง</span>
+            <input type="text" id="guestName"><br>
+
+            <span>เลือกวันที่เข้าพัก</span>
+            <input type="date" id="checkInDate"><br>
+
+            <span>เลือกวันที่ออก</span>
+            <input type="date" id="checkOutDate"><br>
+
+            <span>จำนวนผู้ใหญ่</span>
+            <input type="number" id="numAdults"><br>
+
+            <span>จำนวนเด็ก</span>
+            <input type="number" id="numChildren">
+            <span>**เด็กคิดครึ่งราคา**</span><br>
+
+            <span>ราคาต่อห้องต่อคืน (บาท)</span>
+            <input type="number" id="pricePerRoom" value="5500" disabled><br>
+
+            <span>ราคารวม (บาท)</span>
+            <span id="totalPrice">0</span><br>
+
+            <button id="calculateBtn" class="btn btn-primary">คำนวณราคา</button><br><br>
+            <a href="index.html"><button id="bookBtn" class="btn btn-success" style="display: none;">จอง</button></a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#calculateBtn").click(function () {
+                var checkInDate = new Date($("#checkInDate").val());
+                var checkOutDate = new Date($("#checkOutDate").val());
+                var numAdults = parseInt($("#numAdults").val());
+                var numChildren = parseInt($("#numChildren").val());
+                var pricePerRoom = parseFloat($("#pricePerRoom").val());
+                var guestName = $("#guestName").val();
+
+                var timeDiff = Math.abs(checkOutDate.getTime() - checkInDate.getTime());
+                var nightCount = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                var totalGuests = numAdults + numChildren / 2; // เด็กนับครึ่ง
+
+                var totalPrice = nightCount * totalGuests * pricePerRoom;
+
+                $("#totalPrice").text(totalPrice.toFixed(2));
+                $("#bookBtn").show();
+            });
+
+            $("#bookBtn").click(function () {
+                var guestName = $("#guestName").val();
+                alert("คุณ " + guestName + " ได้จองห้องพักเรียบร้อยแล้ว!");
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.picProfile {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-bottom: 20px; 
+}
+
+.picProfile img {
+    max-height: 400px;
+    max-width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.bookingInfo {
+    overflow: hidden; 
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #bfc2bc;
+    box-sizing: border-box;
+}
+
+#calculateBtn,
+#bookBtn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
